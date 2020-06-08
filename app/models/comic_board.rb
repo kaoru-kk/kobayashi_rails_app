@@ -1,0 +1,2 @@
+class ComicBoard < ApplicationRecord
+end
