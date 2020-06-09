@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_093654) do
 
   create_table "comic_boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "comic_id"
+    t.integer "latest_status", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

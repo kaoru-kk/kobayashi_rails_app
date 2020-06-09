@@ -6,6 +6,7 @@ class ComicBoardsController < ApplicationController
         @comments = Comment.where(parent_id: nil, board_id: params[:id])
     end
 
+
     def create
         comics = Comic.where(seriazation_status: 0)
         comics.each do |comic|

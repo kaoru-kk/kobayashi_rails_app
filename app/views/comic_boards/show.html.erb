@@ -1,6 +1,6 @@
 <div class="container">
         <h2>今週の<%= @comic_board.comic.title %>はどうでしたか？</h2>
-
+        
     <div class="row">
         <div class="col-xs-4 mr-5">
             <%= form_with(model: @comment, local: true, url: comic_board_comments_path(@comic_board.id) ) do |form| %>
@@ -22,10 +22,12 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= comment.user.name %>さんのコメント</h5>
                         <p class="card-text"><%= comment.comment_text %></p>
+                        
                         <hr>
                         <% comment.replies.each do |reply| %>
                             <p class="ml-4"><%= reply.user.name %>さん：  <%= reply.comment_text%></p>
                         <% end %>
+                        
                         <span class='fold_switch' style='font-size:.9em; text-decoration:underline; cursor:pointer;'>▲返信する▲</span><br>
                         <div style='display:none;'>
                             <%= form_with(model: @comment, local: true, url: comic_board_comment_reply_path(comment.board_id, comment.id) ) do |form| %>
