@@ -3,7 +3,7 @@ class ComicBoardsController < ApplicationController
     def show
         @comic_board = ComicBoard.find(params[:id])
         @comment = Comment.new
-        @comments = Comment.all
+        @comments = Comment.where(parent_id: nil, board_id: params[:id])
     end
 
     def create

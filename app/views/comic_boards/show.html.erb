@@ -17,15 +17,52 @@
         </div>
 
         <div class="col-xs-8 ml-5">
-            <% @comic_board.comments.each do |comment| %>
+            <% @comments.each do |comment| %>
                 <div class="card" style="width: 25rem;">
                     <div class="card-body">
                         <h5 class="card-title"><%= comment.user.name %>さんのコメント</h5>
                         <p class="card-text"><%= comment.comment_text %></p>
-                        <a href="#" class="btn btn-success">返信する</a>
+                        <hr>
+                        <% comment.replies.each do |reply| %>
+                            <p class="ml-4"><%= reply.user.name %>さん：  <%= reply.comment_text%></p>
+                        <% end %>
+                        <span class='fold_switch' style='font-size:.9em; text-decoration:underline; cursor:pointer;'>▲返信する▲</span><br>
+                        <div style='display:none;'>
+                            <%= form_with(model: @comment, local: true, url: comic_board_comment_reply_path(comment.board_id, comment.id) ) do |form| %>
+                                <div class="form-group">
+                                    <%= form.text_area :comment_text, class: "form-control", style: "width:199px;" %>
+                                </div>
+
+                                <% if user_signed_in? %>
+                                    <%= form.submit "返信する", class: "btn btn-primary" %>
+                                <% else %>
+                                    ログインしたらコメントできます
+                                <% end %>
+                            <% end %>
+                        </div>
                     </div>
                 </div>
+
+                <br>
             <% end %>
         </div>
   </div>
 </div>
+
+<script>
+    (window.addEventListener("load", function(){
+        var folds = document.getElementsByClassName("fold_switch");
+        for(var i=0;i<folds.length;i++){
+            folds[i].addEventListener('click', function(){
+            var tgt = this.nextElementSibling.nextElementSibling;
+            if (tgt.style.display == 'none') {
+                tgt.style.display = 'block';
+                this.innerHTML = '▼閉じる▼';
+            } else {
+                tgt.style.display = 'none';
+                this.innerHTML = '▲返信する▲';
+            }
+            }, false);
+        }
+    }, false));
+</script>

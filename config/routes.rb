@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :comic_boards, only: [:show, :create] do
     resources :comments, only: [:create]
+    post "/comments/:id/reply" => "comments#reply", as: "comment_reply"
   end
 end
