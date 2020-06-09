@@ -2,6 +2,7 @@ class ComicBoardsController < ApplicationController
 
     def show
         @comic_board = ComicBoard.find(params[:id])
+        @comment = Comment.new
     end
 
     def create

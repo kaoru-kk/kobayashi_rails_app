@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: "top#top"
   resources :comics
 
-  get "comicboards/:id" => "comic_boards#show", as: "comic_board"
-  post "comicboards/create" => "comic_boards#create"
-  
+  resources :comic_boards, only: [:show, :create] do
+    resources :comments, only: [:create]
+  end
 end

@@ -1,1 +1,13 @@
 今週の<%= @comic_board.comic.title %>はどうでしたか？
+
+  <%= form_with(model: @comment, local: true, url: comic_board_comments_path(@comic_board.id) ) do |form| %>
+    <div class="form-group">
+        <%= form.text_area :comment_text, class: "form-control", style: "width:199px;" %>
+    </div>
+
+    <% if user_signed_in? %>
+        <%= form.submit "コメントを投稿する", class: "btn btn-primary" %>
+    <% else %>
+        ログインしたらコメントできます
+    <% end %>
+  <% end %>
