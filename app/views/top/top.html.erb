@@ -12,8 +12,9 @@
             <br>
             <%= link_to "新規登録", new_user_registration_path %>
         <% end %>
-
+        <%= button_to "スレッドを作成する（右にデータがないときのみ実行するボタン", comic_boards_path, method: :post %>
     </div>
+
     <div class="col-sm-8">
         <table class="table">
             <thead>
