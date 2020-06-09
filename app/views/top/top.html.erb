@@ -1,21 +1,18 @@
-<h1>this is top page </h1>
-
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4" >
         <% if user_signed_in? %>
             <%= current_user.name %>さん、こんにちは
+            <br>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <% else %>
             ログインしてください
+            <br>
+            <%= link_to "ログイン", new_user_session_path %>
+            <br>
+            <%= link_to "新規登録", new_user_registration_path %>
         <% end %>
 
-        <br>
-        <%= link_to "ログイン", new_user_session_path %>
-        <br>
-        <%= link_to "新規登録", new_user_registration_path %>
-        <br>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     </div>
     <div class="col-sm-8">
         <table class="table">
