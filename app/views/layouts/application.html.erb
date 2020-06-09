@@ -10,6 +10,63 @@
   </head>
 
   <body>
+    <header>
+    <nav  class="navbar navbar-dark bg-dark " style="background-color:#222;margin-bottom:0px;">
+    <div class="container ">
+      <nav class="nav navbar-nav navbar-lett ">
+        <p class="text-white" style="font-size: 20px; padding-top:10px; color:white;">ジャンプの感想サイト</p>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+           <li>
+           <%= link_to root_path, class:"home glyphicon glyphicon-home home", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;" do %>  
+           Home   
+           <% end %>
+          </li>
+          <li>
+           <%= link_to root_path, class:"users glyphicon glyphicon-user users", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;" do %>  
+           Users   
+           <% end %>
+          </li>
+          <li>
+           <%= link_to root_path, class:"books glyphicon glyphicon-book books", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;"  do %>  
+              
+           <% end %>
+          </li>
+          <li>
+           <%#= link_to destroy_user_session_path, class:"logout glyphicon glyphicon-log-out logout", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;" , :method => :delete do  %>  
+           logout   
+           <%# end %>
+          </li>
+        <% else %>
+           <li>
+           <%#= link_to root_path, class:"home glyphicon glyphicon-home home", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;" do %>  
+           Home  
+           <%# end %>
+          </li>
+          <li>
+          <%#= link_to home_about_path, class:"about glyphicon glyphicon-link about", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;" do %>  
+           About   
+           <%# end %>
+          </li>
+          <li>
+           <%#= link_to new_user_registration_path, class:"sign_up glyphicon glyphicon-edit sign_up", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;" do %>  
+           sign up  
+           <%# end %>
+          </li>
+          <li>
+           <%#= link_to new_user_session_path, class:"sign_in glyphicon glyphicon-log-in sign_in", style:"padding-top:15px; padding-bottom:15px; color:#9d9d9d; font-size:13px;" do %>  
+           login   
+           <%# end %>
+          </li>
+        <% end %>  
+        </ul>
+      </nav>
+    </div>
+    </nav>
+    </header>
+
     <%= yield %>
   </body>
 </html>

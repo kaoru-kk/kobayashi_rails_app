@@ -3,3 +3,5 @@
 <%= render 'form', comic: @comic %>
 
 <%= link_to 'Back', comics_path %>
+
+<%= button_to "スレッドを作成する", comicboards_create_path, method: :post %>
