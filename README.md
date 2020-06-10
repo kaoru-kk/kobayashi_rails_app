@@ -5,6 +5,8 @@
 （以下コード）
 
 ```
+#lib/tasks/commic_board.rb
+
 namespace :comic_board do
     desc "今週の作品毎のスレッド作成"
     task :new_task => :environment do
