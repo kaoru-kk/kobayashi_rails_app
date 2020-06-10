@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :comments, dependent: :destroy
+  has_many :favorites
+
+  def favorite_exists?(comment)
+    favorites.where(comment_id: comment).exists?
+  end
 end
