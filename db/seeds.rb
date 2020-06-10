@@ -76,11 +76,21 @@ Comic.create(
     title: "タイトルF",
     author: "FFF",
     overview: "FFF",
-    seriazation_status: "連載中"
+    seriazation_status: "連載終了"
 )
 Comic.create(
     title: "タイトルGGG",
     author: "GGG",
     overview: "GGG",
-    seriazation_status: "連載中"
+    seriazation_status: "休載中"
 )
+
+comics = Comic.where(seriazation_status: 0)
+comics.each do |comic|
+    ComicBoard.create(comic_id: comic.id)
+end
+
+User.create(name:"タロー", email: "d@d", password: "aaaaaa")
+User.create(name:"ミズゴロウ", email: "a@a", password: "bbbbbb")
+Comment.create(id:1, user_id:1, board_id:1, comment_text: "超面白い！！！！" )
+Comment.create(id:2, user_id:2, board_id:1, parent_id:1,  comment_text: "わっかる！" )

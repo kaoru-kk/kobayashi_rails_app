@@ -3,24 +3,28 @@ class CommentsController < ApplicationController
         @comment = Comment.new(comment_params)
         @comment.user_id = current_user.id
         @comment.board_id = params[:comic_board_id]
-        if @comment.save!
+        if @comment.save
             redirect_to comic_board_path(@comment.board_id)
         else
-            flash[:error] = "コメントの保存に失敗しました"
-            #render 
+            @reply = Comment.new
+            @comic_board = ComicBoard.find(@comment.board_id)           
+            @comments = Comment.where(parent_id: nil, board_id: @comment.board_id)
+            render template: "comic_boards/show"
         end
     end
 
     def reply
-        @comment = Comment.new(comment_params)
-        @comment.user_id = current_user.id
-        @comment.board_id = params[:comic_board_id]
-        @comment.parent_id = params[:id]
-        if @comment.save!
-            redirect_to comic_board_path(@comment.board_id)
+        @reply = Comment.new(comment_params)
+        @reply.user_id = current_user.id
+        @reply.board_id = params[:comic_board_id]
+        @reply.parent_id = params[:id]
+        if @reply.save
+            redirect_to comic_board_path(@reply.board_id)
         else
-            flash[:error] = "返信の保存に失敗しました"
-            #render 
+            @comment = Comment.new
+            @comic_board = ComicBoard.find(@reply.board_id)           
+            @comments = Comment.where(parent_id: nil, board_id: @reply.board_id)
+            render template: "comic_boards/show"
         end
     end
 

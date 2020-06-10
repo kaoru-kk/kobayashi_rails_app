@@ -1,3 +1,4 @@
+<br>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4" >
@@ -6,13 +7,11 @@
             <br>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <% else %>
-            ログインしてください
             <br>
-            <%= link_to "ログイン", new_user_session_path %>
-            <br>
-            <%= link_to "新規登録", new_user_registration_path %>
+            <p>コメントの投稿にはログインが必要です。</p>
+            <p>閲覧は誰でも可能です(^_^)</p>
         <% end %>
-        <%= button_to "スレッドを作成する（右にデータがないときのみ実行するボタン", comic_boards_path, method: :post %>
+        <%#= button_to "スレッドを作成する（右にデータがないときのみ実行するボタン", comic_boards_path, method: :post %>
     </div>
 
     <div class="col-sm-8">
