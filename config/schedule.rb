@@ -8,6 +8,8 @@ env :PATH, ENV['PATH']
 
 #↓こうするとうまく動くけど色々cronに登録された、、、うまい具合にしておかねば
 #ENV.each { |k, v| env(k, v) }
+env "DB_USER", ENV['DB_USER']
+env "DB_PASSWORD", ENV['DB_PASSWORD']
 
 DIR_RBENV_BIN = "#{ENV['HOME']}/.rbenv/bin"
 job_type :rbenv_rake, %Q!PATH="#{DIR_RBENV_BIN}:$PATH"; eval "$(rbenv init -)"; cd :path && :bundle_command rake :task --silent :output!
@@ -18,5 +20,6 @@ job_type :rake,    "cd :path && :environment_variable=:environment bundle exec r
 every 1.days, at:"0:00 am" do
   rake "comic_board:new_task"
 end
+
 
 
