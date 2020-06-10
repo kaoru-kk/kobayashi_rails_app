@@ -4,7 +4,6 @@
     <div class="row">
         <div class="col-xs-4 mr-5">
             <%= form_with(model: @comment, local: true, url: comic_board_comments_path(@comic_board.id) ) do |form| %>
-                
                 <% if @comment.errors.any? %>
                     <div id="error_explanation">
                         <h5 style="font-weight:bold; color:red;">コメントを入力してね！</h5>
@@ -35,7 +34,11 @@
                     <div class="card-body">
                         
                         <span class="card-text"　style="width: 80%;">
-                            <b><%= comment.user.try(:name) || "退会済みユーザー" %></b>さん：<%= comment.comment_text %>
+                            <b> 
+                            <%= link_to user_path(comment.user.id) do %> 
+                                <%= comment.user.try(:name) || "退会済みユーザー" %>
+                            <% end %>
+                            </b>さん：<%= comment.comment_text %>
                         </span>
 
                         <% if current_user.favorite_exists?(comment.id) %>

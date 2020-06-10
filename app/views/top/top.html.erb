@@ -5,6 +5,8 @@
         <% if user_signed_in? %>
             <%= current_user.name %>さん、こんにちは
             <br>
+            <%= link_to "マイページはこちら", user_path(current_user.id) %>
+            <br>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <% else %>
             <br>
