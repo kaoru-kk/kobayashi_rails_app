@@ -1,6 +1,6 @@
 <div class="container">
     <h2>今週の<%= @comic_board.comic.title %>はどうでしたか？</h2>
-    
+    <br>
     <div class="row">
         <div class="col-xs-4 mr-5">
             <%= form_with(model: @comment, local: true, url: comic_board_comments_path(@comic_board.id) ) do |form| %>
