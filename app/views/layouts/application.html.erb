@@ -18,36 +18,46 @@
           </nav>
           <nav>
             <ul class="nav navbar-nav navbar-right　list-group list-group-horizontal">
-            <% if user_signed_in? %>
-              <li　class="list-group-item">
-              <%= link_to root_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
-              Home   
-              <% end %>
-              </li>
+              <% if user_signed_in? %>
+                <li　class="list-group-item">
+                  <span style="padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;"><%= "id:#{current_user.id}　email:#{current_user.email}　name:#{current_user.name}　｜" %></span>
+                </li>
 
-              <li　class="list-group-item">
-              <%= link_to destroy_user_session_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" , :method => :delete do  %>  
-              logout   
-              <% end %>
-              </li>
-            <% else %>
-              <li　class="list-group-item">
-              <%= link_to root_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
-              Home  
-              <% end %>
-              </li>
+                <li　class="list-group-item">
+                  <%= link_to root_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
+                    Home   
+                  <% end %>
+                </li>
 
-              <li　class="list-group-item">
-              <%= link_to new_user_registration_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
-              会員登録 
-              <% end %>
-              </li>
-              <li　class="list-group-item">
-              <%= link_to new_user_session_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
-              ログイン
-              <% end %>
-              </li>
-            <% end %>  
+                <li　class="list-group-item">
+                  <%= link_to notifications_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do  %>  
+                    通知
+                  <% end %>
+                </li>
+
+                <li　class="list-group-item">
+                  <%= link_to destroy_user_session_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" , :method => :delete do  %>  
+                    ログアウト
+                  <% end %>
+                </li>
+              <% else %>
+                <li　class="list-group-item">
+                  <%= link_to root_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
+                    Home  
+                  <% end %>
+                </li>
+
+                <li　class="list-group-item">
+                  <%= link_to new_user_registration_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
+                    会員登録 
+                  <% end %>
+                </li>
+                <li　class="list-group-item">
+                  <%= link_to new_user_session_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do %>  
+                    ログイン
+                  <% end %>
+                </li>
+              <% end %>  
             </ul>
           </nav>
         </div>

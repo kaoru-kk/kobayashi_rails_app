@@ -39,12 +39,12 @@ class Notification < ApplicationRecord
     end
 
 
-    def create_notification_follow!(current_user)
-        notification_searcn = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    def create_notification_follow!(current_user, follow_id)
+        notification_searcn = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, follow_id, 'フォロー'])
         if notification_searcn.blank?
             notification = current_user.active_notifications.new(
-            visited_id: id,
-            action: 'follow'
+            visited_id: follow_id,
+            action: 'フォロー'
             )
             notification.save if notification.valid?
         end
