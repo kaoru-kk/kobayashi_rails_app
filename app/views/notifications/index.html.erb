@@ -1,23 +1,26 @@
-<div class="col-md-6.mx-auto">
+<div class="col-md-3 mx-auto">
     <div class="form-inline">
         <% @notifications.each do |n| %>
-            <% case n.action %>
-                <% when "コメント" then %>
-                    <span>
-                        <%= n.visitor.name %>さんが<%= link_to "あなたの投稿", comic_board_path(n.comic_board_id)%>にコメントしました
-                    </span>
-                <% when "いいね" then %>
-                    <span>
-                        <%= n.visitor.name %>さんが<%= link_to "あなたの投稿", comic_board_path(n.comic_board_id)%>にいいねしました
-                    </span>    
-                <% when "フォロー" then %>
-                    <span>
-                        <%= n.visitor.name %>さんが<%= link_to "あなた", comic_board_path(n.comic_board_id)%>をフォローしました
-                    </span>
-            <% end %>
-           
-            <span><%= time_ago_in_words(n.created_at).upcase %></span>
-        <% end %>
+            <div>
+                <% case n.action %>
+                    <% when "コメント" then %>
+                        
+                            <%= n.visitor.name %>さんが<%= link_to "あなたの投稿", comic_board_path(n.comic_board_id)%>にコメントしました
+                            <p class="text-muted mb-0"><%= n.comment.comment_text %></p>
+                        
+                    <% when "いいね" then %>
+                        <span>
+                            <%= n.visitor.name %>さんが<%= link_to "あなたの投稿", comic_board_path(n.comic_board_id)%>にいいねしました
+                        </span>    
+                    <% when "フォロー" then %>
+                        <span>
+                            <%= n.visitor.name %>さんが<%= link_to "あなた", comic_board_path(n.comic_board_id)%>をフォローしました
+                        </span>
+                <% end %>
 
+                <%= time_ago_in_words(n.created_at).upcase %>
+                <hr>
+            </div>
+        <% end %>
     </div>
 </div>

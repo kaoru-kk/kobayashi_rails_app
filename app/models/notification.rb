@@ -6,22 +6,22 @@ class Notification < ApplicationRecord
     belongs_to :visitor, class_name: 'User', foreign_key: 'visitor_id', optional: true
     belongs_to :visited, class_name: 'User', foreign_key: 'visited_id', optional: true
 
-    def create_notification_like!(current_user, comment)
-        notification_searcn = Notification.where(["visitor_id = ? and visited_id = ? and comment_id = ? and action = ?"], current_user.id, comment.user.id, comment.id, 0)
-        if notification_search.blank?
+    def create_notification_like!(current_user, favorite)
+        #通知テーブルからいいねしたものがあるか検索　⇨　あれば、通知のレコード作成を行わない
+        notification_searcn = Notification.where(["visitor_id = ? and visited_id = ? and comment_id = ? and action = ?", current_user.id, favorite.comment.user_id, favorite.comment.id, "いいね"] )
+        if notification_searcn.blank?
             notification = current_user.active_notifications.new(
-                comment_id: comment.id,
-                visited_id: comment.user.id,
+                comic_board_id: favorite.comment.comic_board_id,
+                comment_id: favorite.comment.id,
+                visited_id: favorite.comment.user_id,
                 action: "いいね"
             )
-        end
-
-        #自分へのいいねは既読にしておく
-        if notification.visitor_id == notification.visired_id
-            notification.checked = true
-        end
-
-        notification.save if notification.valid?
+            #自分へのいいねは既読にしておく
+            if notification.visitor_id == notification.visitor_id
+                notification.checked = true
+            end
+            notification.save if notification.valid?
+        end 
     end
 
     def save_notification_comment!(current_user, comment)
