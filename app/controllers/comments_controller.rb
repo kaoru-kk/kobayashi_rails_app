@@ -2,13 +2,13 @@ class CommentsController < ApplicationController
     def create 
         @comment = Comment.new(comment_params)
         @comment.user_id = current_user.id
-        @comment.board_id = params[:comic_board_id]
+        @comment.comic_board_id = params[:comic_board_id]
         if @comment.save
-            redirect_to comic_board_path(@comment.board_id)
+            redirect_to comic_board_path(@comment.comic_board_id)
         else
             @reply = Comment.new
-            @comic_board = ComicBoard.find(@comment.board_id)           
-            @comments = Comment.where(parent_id: nil, board_id: @comment.board_id)
+            @comic_board = ComicBoard.find(@comment.comic_board_id)           
+            @comments = Comment.where(parent_id: nil, comic_board_id: @comment.comic_board_id)
             render template: "comic_boards/show"
         end
     end
@@ -16,14 +16,17 @@ class CommentsController < ApplicationController
     def reply
         @reply = Comment.new(comment_params)
         @reply.user_id = current_user.id
-        @reply.board_id = params[:comic_board_id]
+        @reply.comic_board_id = params[:comic_board_id]
         @reply.parent_id = params[:id]
         if @reply.save
-            redirect_to comic_board_path(@reply.board_id)
+            #reply成功した時に通知を送る
+            notification = Notification.new
+            notification.new_notification_comment!(current_user, @reply)
+            redirect_to comic_board_path(@reply.comic_board_id)
         else
             @comment = Comment.new
-            @comic_board = ComicBoard.find(@reply.board_id)           
-            @comments = Comment.where(parent_id: nil, board_id: @reply.board_id)
+            @comic_board = ComicBoard.find(@reply.comic_board_id)           
+            @comments = Comment.where(parent_id: nil, comic_board_id: @reply.comic_board_id)
             render template: "comic_boards/show"
         end
     end

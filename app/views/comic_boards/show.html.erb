@@ -59,7 +59,7 @@
                         
                         <span class='fold_switch' style='font-size:.9em; text-decoration:underline; cursor:pointer;'>▲返信する▲</span><br>
                         <div style='display:none;'>
-                            <%= form_with(model: @reply, local: true, url: comic_board_comment_reply_path(comment.board_id, comment.id) ) do |form| %>
+                            <%= form_with(model: @reply, local: true, url: comic_board_comment_reply_path(comment.comic_board_id, comment.id) ) do |form| %>
                                 <div class="form-group">
                                     <%= form.text_area :comment_text, class: "form-control", style: "width:199px;" %>
                                 </div>

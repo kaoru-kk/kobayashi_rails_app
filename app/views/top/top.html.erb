@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-4" >
         <% if user_signed_in? %>
-            <%= current_user.name %>さん、こんにちは
+            ID：<%= current_user.id %> 名前：<%= current_user.name %>さん、こんにちは
             <br>
             <%= link_to "マイページはこちら", user_path(current_user.id) %>
             <br>

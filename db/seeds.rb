@@ -92,5 +92,5 @@ end
 
 User.create(name:"タロー", email: "d@d", password: "aaaaaa")
 User.create(name:"ミズゴロウ", email: "a@a", password: "bbbbbb")
-Comment.create(id:1, user_id:1, board_id:1, comment_text: "超面白い！！！！" )
-Comment.create(id:2, user_id:2, board_id:1, parent_id:1,  comment_text: "わっかる！" )
+Comment.create(id:1, user_id:1, comic_board_id:1, comment_text: "超面白い！！！！" )
+Comment.create(id:2, user_id:2, comic_board_id:1, parent_id:1,  comment_text: "わっかる！" )

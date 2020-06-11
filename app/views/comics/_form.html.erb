@@ -28,7 +28,7 @@
 
   <div class="field">
     <label>連載ステータス</label>
-    <%= form.select :seriazation_status, Comic.seriazation_statuses.keys.to_a, {} %>
+    <%= form.select :seriazation_status, [["連載中", "連載中"], ["連載終了", "連載終了"], ["休載中", "休載中"]], {} %>
   </div>
 
   <div class="actions">

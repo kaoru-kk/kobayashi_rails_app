@@ -8,7 +8,7 @@ namespace :comic_board do
         end
 
         #現在連載中の漫画を取得→最新のスレッド作成
-        comics = Comic.where(seriazation_status: 0)
+        comics = Comic.where(seriazation_status: "連載中")
         comics.each do |comic|
             puts comic.title
             ComicBoard.create(comic_id: comic.id)

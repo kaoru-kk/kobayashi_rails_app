@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   # フォロー機能
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+
+  resources :notifications, only: :index
 end

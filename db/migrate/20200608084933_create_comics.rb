@@ -4,8 +4,7 @@ class CreateComics < ActiveRecord::Migration[6.0]
       t.string :author
       t.string :title
       t.text :overview
-      #0 = 連載中
-      t.integer :seriazation_status, default: 0
+      t.string :seriazation_status, default: "連載中"
 
       t.timestamps
     end
