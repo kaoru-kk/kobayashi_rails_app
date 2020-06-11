@@ -3,3 +3,5 @@
 <%= render 'form', comic: @comic %>
 
 <%= link_to 'Back', comics_path %>
+
+<%= button_to "スレッド立てるボタン(transaction確認用)",comic_boards_path, method: :post %>
