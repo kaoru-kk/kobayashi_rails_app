@@ -24,25 +24,11 @@ class Notification < ApplicationRecord
         notification.save if notification.valid?
     end
 
-    #返信時のみ通知を送る、コメントのparent_idとか入れる、
-    def new_notification_comment!(current_user, comment)
-        #binding.pry
-        # comment_ids = Comment.select(:user_id).where(board_id: comment.board_id).where.not(user_id: current_user.id).distinct
-        comment_ids  = ""
-        # comment_ids.each do |comment_id|
-        #     puts comment_id['user_id']
-        #     puts "u3u0u403u4243aefasefasefasefasefase434"
-        #   save_notification_comment!(current_user, comment_id, comment_id['user_id'])
-        # end
-        # まだ誰もコメントしていない場合は、投稿者に通知を送る
-        save_notification_comment!(current_user, comment.comic_board_id, comment.id, comment.parent.user_id) if comment_ids.blank?
-    end
-
-    def save_notification_comment!(current_user, comic_board_id, comment_id, visited_id)
+    def save_notification_comment!(current_user, comment)
         notification = current_user.active_notifications.new(
-            comic_board_id: comic_board_id,
-            comment_id: comment_id,
-            visited_id: visited_id,
+            comic_board_id: comment.comic_board_id,
+            comment_id: comment.id,
+            visited_id: comment.parent.user_id,
             action: 'コメント'
         )
         # 自分の投稿に対するコメントの場合は、通知済みとする

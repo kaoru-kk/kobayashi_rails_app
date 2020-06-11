@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
         if @reply.save
             #reply成功した時に通知を送る
             notification = Notification.new
-            notification.new_notification_comment!(current_user, @reply)
+            notification.save_notification_comment!(current_user, @reply)
             redirect_to comic_board_path(@reply.comic_board_id)
         else
             @comment = Comment.new
