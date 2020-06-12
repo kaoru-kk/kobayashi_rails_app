@@ -19,7 +19,7 @@ class Notification < ApplicationRecord
                 action: "いいね"
             )
             #自分へのいいねは既読にしておく
-            if notification.visitor_id == notification.visitor_id
+            if notification.visitor_id == notification.visited_id
                 notification.checked = true
             end
             notification.save! if notification.valid?
