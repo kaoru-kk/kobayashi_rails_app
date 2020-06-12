@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
     def create 
-        @comment = Comment.new(comment_params)
-        @comment.user_id = current_user.id
+        @comment = current_user.comments.new(comment_params)
         @comment.comic_board_id = params[:comic_board_id]
         if @comment.save
             redirect_to comic_board_path(@comment.comic_board_id)
@@ -14,21 +13,24 @@ class CommentsController < ApplicationController
     end
 
     def reply
-        @reply = Comment.new(comment_params)
-        @reply.user_id = current_user.id
+        @reply = current_user.comments.new(comment_params)
         @reply.comic_board_id = params[:comic_board_id]
         @reply.parent_id = params[:id]
-        if @reply.save
-            #reply成功した時に通知を送る
+        
+        #Transaction追加（返信と通知処理挟むため）
+        ActiveRecord::Base.transaction do
+            @reply.save!
             notification = Notification.new
             notification.save_notification_comment!(current_user, @reply)
             redirect_to comic_board_path(@reply.comic_board_id)
-        else
+        end
+
+        rescue => e
+            puts e
             @comment = Comment.new
             @comic_board = ComicBoard.find(@reply.comic_board_id)           
             @comments = Comment.where(parent_id: nil, comic_board_id: @reply.comic_board_id)
             render template: "comic_boards/show"
-        end
     end
 
     private

@@ -33,7 +33,7 @@
                   <%= link_to notifications_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do  %>  
                     通知
                     <% if notification_check? == true %>
-                      新着通知あり！
+                      <span style="color:red; font-weight:bold">新着通知あり</span>
                     <% end %>
                    <% end %>
                 </li>

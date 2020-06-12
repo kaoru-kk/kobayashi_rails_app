@@ -1,8 +1,10 @@
 class RelationshipsController < ApplicationController
     def follow
-        current_user.follow(params[:id])
-        notification = Notification.new
-        notification.create_notification_follow!(current_user, params[:id])
+        ActiveRecord::Base.transaction do
+            current_user.follow(params[:id])
+            notification = Notification.new
+            notification.create_notification_follow!(current_user, params[:id])
+        end
         redirect_to user_path(params[:id])
     end
       
