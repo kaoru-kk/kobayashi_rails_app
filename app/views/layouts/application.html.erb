@@ -32,7 +32,10 @@
                 <li　class="list-group-item">
                   <%= link_to notifications_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do  %>  
                     通知
-                  <% end %>
+                    <% if notification_check? == true %>
+                      新着通知あり！
+                    <% end %>
+                   <% end %>
                 </li>
 
                 <li　class="list-group-item">
