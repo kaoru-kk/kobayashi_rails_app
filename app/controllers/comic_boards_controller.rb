@@ -19,7 +19,7 @@ class ComicBoardsController < ApplicationController
             #現在連載中の漫画を取得→最新のスレッド作成
             comics = Comic.where(seriazation_status: "連載中")
             comics_array = []
-            comics.each do |comic|
+            comics.find_each do |comic|
                 comics_array << ComicBoard.new(comic_id: comic.id)
             end
             ComicBoard.import comics_array
