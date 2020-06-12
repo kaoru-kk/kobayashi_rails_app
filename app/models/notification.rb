@@ -5,6 +5,8 @@ class Notification < ApplicationRecord
     belongs_to :comment, optional: true
     belongs_to :visitor, class_name: 'User', foreign_key: 'visitor_id', optional: true
     belongs_to :visited, class_name: 'User', foreign_key: 'visited_id', optional: true
+    ACTION_VALUES = ["いいね", "コメント", "フォロー"]
+    validates :action,  presence: true, inclusion: {in:ACTION_VALUES}
 
     def create_notification_like!(current_user, favorite)
         #通知テーブルからいいねしたものがあるか検索　⇨　あれば、通知のレコード作成を行わない
@@ -20,7 +22,7 @@ class Notification < ApplicationRecord
             if notification.visitor_id == notification.visitor_id
                 notification.checked = true
             end
-            notification.save if notification.valid?
+            notification.save! if notification.valid?
         end 
     end
 
@@ -35,7 +37,7 @@ class Notification < ApplicationRecord
         if notification.visitor_id == notification.visited_id
           notification.checked = true
         end
-        notification.save if notification.valid?
+        notification.save! if notification.valid?
     end
 
 
@@ -46,7 +48,7 @@ class Notification < ApplicationRecord
             visited_id: follow_id,
             action: 'フォロー'
             )
-            notification.save if notification.valid?
+            notification.save! if notification.valid?
         end
     end
 end

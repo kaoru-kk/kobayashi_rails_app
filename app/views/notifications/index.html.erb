@@ -1,4 +1,4 @@
-<div class="col-md-4 mx-auto">
+<div class="col-md-3 mx-auto">
     <div class="form-inline">
         <% @notifications.each do |n| %>
             <div>
@@ -9,6 +9,7 @@
                     <% when "いいね" then %>
                         <span>
                             <%= n.visitor.name %>さんが<%= link_to "あなたの投稿", comic_board_path(n.comic_board_id)%>にいいねしました
+                            <p class="text-muted mb-0"><%= n.comment.comment_text %></p>
                         </span>    
                     <% when "フォロー" then %>
                         <span>
