@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
 
   resources :notifications, only: :index
+  resources :points
 end

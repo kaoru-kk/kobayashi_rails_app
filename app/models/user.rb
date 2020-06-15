@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites
 
+  #受け取ったポイント
+  has_many :recieve_points, class_name: "PointReciever", foreign_key: "user_id", dependent: :destroy
+
   #自分からの通知
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   #相手からの通知
