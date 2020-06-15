@@ -15,5 +15,16 @@
   <%= @point.point %>
 </p>
 
+<p>
+  <strong>開始日</strong>
+  <%= @point.start_date %>
+</p>
+
+<p>
+  <strong>終了日</strong>
+  <%= @point.end_date %>
+</p>
+
+
 <%= link_to 'Edit', edit_point_path(@point) %> |
 <%= link_to 'Back', points_path %>

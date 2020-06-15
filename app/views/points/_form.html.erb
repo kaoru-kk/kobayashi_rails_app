@@ -27,6 +27,16 @@
     <%= form.number_field :point %>
   </div>
 
+  <div class="field">
+    <label>開始日</label>
+    <%= form.datetime_select :start_date %>
+  </div>
+
+  <div class="field">
+    <label>終了日</label>
+    <%= form.datetime_select :end_date %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
