@@ -1,2 +1,6 @@
-<h1>Points#edit</h1>
-<p>Find me in app/views/points/edit.html.erb</p>
+<h1>Editing Comic</h1>
+
+<%= render 'form', point: @point %>
+
+<%= link_to 'Show', @point %> |
+<%= link_to 'Back', comics_path %>

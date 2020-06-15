@@ -1,2 +1,19 @@
-<h1>Points#show</h1>
-<p>Find me in app/views/points/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @point.title %>
+</p>
+
+<p>
+  <strong>概要:</strong>
+  <%= @point.detail %>
+</p>
+
+<p>
+  <strong>ポイント数</strong>
+  <%= @point.point %>
+</p>
+
+<%= link_to 'Edit', edit_point_path(@point) %> |
+<%= link_to 'Back', points_path %>

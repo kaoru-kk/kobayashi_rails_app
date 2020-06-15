@@ -1,2 +1,6 @@
-<h1>Points#new</h1>
-<p>Find me in app/views/points/new.html.erb</p>
+<h1>New Point</h1>
+
+<%= render 'form', point: @point %>
+
+<%= link_to 'Back', points_path %>
+

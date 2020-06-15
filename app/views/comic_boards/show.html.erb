@@ -41,15 +41,25 @@
                             </b>さん：<%= comment.comment_text %>
                         </span>
 
-                        <% if user_signed_in? %>
+                        <% if comment.user != current_user && user_signed_in? %>
+                        
                             <% if current_user.favorite_exists?(comment.id)  %>
                                 <%= link_to favorite_destroy_path(comment.id), method: :delete do %>
                                     <svg  style="width:20%; color: red;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-up"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
                                 <% end %>
                             <% else %>
-                                <%= link_to favorite_create_path(comment.id), method: :post do %>
-                                    <svg  style="width:20%;  color:grey;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-up"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>                                
-                                <% end %>
+                                <svg style="width:20%;  color:grey; cursor:pointer;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-up favorite_button"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>                                
+                                <div id="modal" class="modal" style="display:none;">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <%= form_tag(favorite_create_path(comment.id), method: :post) do %>
+                                                ポイントを他のユーザにあげる事ができます！いいねと思った分だけあげちゃいましょう！<br>
+                                                <%= select_tag 'point', options_for_select((0..current_user.point_count).to_a)  %>
+                                                <%= submit_tag "いいね送信" %>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </div>
                             <% end %>
                             <%= comment.favorites.count %>
                         <% end %>
@@ -81,6 +91,25 @@
   </div>
 </div>
 
+<style>
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content{
+    background-color: white;
+    width: 500px;
+    margin: 20% auto;
+}
+</style>
+
 <script>
     (window.addEventListener("load", function(){
         var folds = document.getElementsByClassName("fold_switch");
@@ -94,6 +123,21 @@
                 tgt.style.display = 'none';
                 this.innerHTML = '▲返信する▲';
             }
+            }, false);
+        }
+
+        var btn = document.getElementsByClassName('favorite_button');
+        var closeBtn = document.getElementsByClassName('closeBtn');
+
+        for(var i=0;i<btn.length;i++){
+            btn[i].addEventListener('click', function(){
+            var tgt = this.nextElementSibling;
+            console.log(tgt)
+            if (tgt.style.display == 'none') {
+                tgt.style.display = 'block';
+            } else {
+                tgt.style.display = 'none';
+            }            
             }, false);
         }
     }, false));

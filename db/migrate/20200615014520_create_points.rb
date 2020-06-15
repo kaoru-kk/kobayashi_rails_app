@@ -1,8 +1,9 @@
 class CreatePoints < ActiveRecord::Migration[6.0]
   def change
     create_table :points do |t|
-      t.string :point_title
-      t.integer :point_number
+      t.string :title
+      t.text :detail
+      t.integer :point
 
       t.timestamps
     end
