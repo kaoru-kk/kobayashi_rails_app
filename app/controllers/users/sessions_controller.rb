@@ -11,9 +11,6 @@ class Users::SessionsController < Devise::SessionsController
   #POST /resource/sign_in
   def create
     super
-    puts "ここにログインボーナスの処理入れる"
-    PointMethod.login_bonus_check(current_user)
-
   end
 
   # DELETE /resource/sign_out

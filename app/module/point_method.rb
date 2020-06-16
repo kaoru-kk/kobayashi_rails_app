@@ -1,4 +1,6 @@
 module PointMethod
+    #以下のメソッドがmodule関数になるよ宣言
+    module_function
 
     #ポイントをもらった側
     def increase_point(user, point)
@@ -22,8 +24,4 @@ module PointMethod
             PointReciever.create(user_id: user.id, point_id: latest_login_bonus.id)
         end
     end
-    
-    module_function :increase_point
-    module_function :decrease_point
-    module_function :login_bonus_check
 end

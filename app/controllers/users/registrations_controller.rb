@@ -12,8 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    puts "ここにログインボーナスの処理入れる"
-    PointMethod.login_bonus_check(current_user)
   end
 
   # GET /resource/edit
