@@ -5,7 +5,8 @@ class Notification < ApplicationRecord
     belongs_to :comment, optional: true
     belongs_to :visitor, class_name: 'User', foreign_key: 'visitor_id', optional: true
     belongs_to :visited, class_name: 'User', foreign_key: 'visited_id', optional: true
-    ACTION_VALUES = ["いいね", "コメント", "フォロー"]
+    #belongs_to :point, class_name: "PointReciever", foreign_key: "point_id" 
+    ACTION_VALUES = ["いいね", "コメント", "フォロー", "ポイント"]
     validates :action,  presence: true, inclusion: {in:ACTION_VALUES}
 
     def create_notification_like!(current_user, favorite)

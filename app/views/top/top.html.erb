@@ -1,3 +1,6 @@
+<% if user_signed_in? %>
+    <%   %> 
+<% end %>
 <br>
 <div class="container-fluid">
   <div class="row">
@@ -13,7 +16,6 @@
             <p>コメントの投稿にはログインが必要です。</p>
             <p>閲覧は誰でも可能です(^_^)</p>
         <% end %>
-        <%#= button_to "スレッドを作成する（右にデータがないときのみ実行するボタン", comic_boards_path, method: :post %>
     </div>
 
     <div class="col-sm-8">
