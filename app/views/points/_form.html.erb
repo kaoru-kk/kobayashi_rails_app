@@ -36,6 +36,11 @@
     <label>終了日</label>
     <%= form.datetime_select :end_date %>
   </div>
+  
+  <div class="field">
+    <label>カテゴリ</label>
+    <%= form.select :point_category, [["シーズンイベント", "シーズンイベント"], ["ログインボーナス", "ログインボーナス"], ["その他", "その他"]], {} %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

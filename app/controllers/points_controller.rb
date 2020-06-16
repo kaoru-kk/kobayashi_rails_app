@@ -42,6 +42,6 @@ class PointsController < ApplicationController
   private
   def point_params
     date_attributes = %i(start_date(1i) start_date(2i) start_date(3i) start_date(4i) start_date(5i) end_date(1i) end_date(2i) end_date(3i) end_date(4i) end_date(5i))
-    params.require(:point).permit(:title, :detail, :point, date_attributes )
+    params.require(:point).permit(:title, :detail, :point, :point_category, date_attributes )
   end
 end
