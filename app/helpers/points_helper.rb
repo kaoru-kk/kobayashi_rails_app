@@ -14,7 +14,7 @@ module PointsHelper
     end
 
     def find_point(id)
-        @point = Point.find(id)
-        return @point.point
+        point = Point.find(id)
+        return "#{point.title}：#{point.point}"
     end
 end

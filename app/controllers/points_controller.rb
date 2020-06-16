@@ -9,6 +9,7 @@ class PointsController < ApplicationController
 
   def show
     @point = Point.find(params[:id])
+    @users = User.all
   end
 
   def edit

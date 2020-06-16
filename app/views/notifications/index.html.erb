@@ -18,7 +18,7 @@
                     <% when "ポイント" then %>
                         <span>
                             <%= PointsHelper.find_point(n.point_id) %>ポイントが受け取れます！
-                            <% if n.checked%>
+                            <% if n.checked %>
                                 受け取り済
                             <% else %>
                                 <%= link_to "ポイントを受け取る", notification_path(n.id), method: :patch %>

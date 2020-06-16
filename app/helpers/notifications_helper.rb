@@ -16,6 +16,11 @@ module NotificationsHelper
         notification_check = Notification.where(visited_id: user.id, point_id: latest_login_bonus.id)
         notification_check.blank? ? (puts "処理続行") : (return false)
 
-        Notification.create!(visitor_id:1,visited_id: user.id,point_id:latest_login_bonus.id,  action: "ポイント")
+        Notification.create!(
+            visitor_id: 1,
+            visited_id: user.id,
+            point_id: latest_login_bonus.id,
+            action: "ポイント"
+            )    
     end
 end

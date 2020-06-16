@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
 
+  
+  resources :points do
+    post "/point_send_users" => "notifications#point_send", as: "send"
+  end
   resources :notifications, only: [:index, :update]
-  resources :points
+
 end

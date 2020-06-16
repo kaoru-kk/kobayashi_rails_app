@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_052303) do
+ActiveRecord::Schema.define(version: 2020_06_16_092920) do
 
   create_table "comic_boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "comic_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_052303) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "point_category"
+    t.boolean "send_status", default: false
   end
 
   create_table "relationships", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
