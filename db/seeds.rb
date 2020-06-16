@@ -92,5 +92,10 @@ end
 
 User.create(name:"タロー", email: "d@d", password: "aaaaaa")
 User.create(name:"ミズゴロウ", email: "a@a", password: "bbbbbb")
-Comment.create(id:1, user_id:1, comic_board_id:1, comment_text: "超面白い！！！！" )
-Comment.create(id:2, user_id:2, comic_board_id:1, parent_id:1,  comment_text: "わっかる！" )
+Comment.create(user_id:1, comic_board_id:1, comment_text: "超面白い！！！！" )
+Comment.create(user_id:2, comic_board_id:1, parent_id:1,  comment_text: "わっかる！" )
+
+Point.create(title: "過去ログインボーナス1", detail: "06/01-06/07", point: 100,	start_date: "2020-06-01 00:00:00", end_date: "2020-06-07 23:59:00", point_category: "ログインボーナス")
+Point.create(title: "過去ログインボーナス2", detail: "06/08-06/15", point: 100,	start_date: "2020-06-08 00:00:00", end_date: "2020-06-14 23:59:00", point_category: "ログインボーナス")
+Point.create(title: "過去ログインボーナス2", detail: "06/15-06/22", point: 100,	start_date: "2020-06-15 00:00:00", end_date: "2020-06-21 23:59:00", point_category: "ログインボーナス")
+Point.create(title: "ハロウィンボーナス", detail: "ハロウィン！06/15-06/22", point: 300, start_date: "2020-08-30 00:00:00", end_date: "2020-08-31 23:59:00", point_category: "シーズンイベント")
