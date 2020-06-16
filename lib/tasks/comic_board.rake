@@ -15,6 +15,7 @@ namespace :comic_board do
                 comics_array << ComicBoard.new(comic_id: comic.id)
             end
             ComicBoard.import comics_array
+            Point.create(title: "ログイン ボーナス", detail: "これはログインボーナスだよん", point: 100, start_date: Time.now , end_date: Time.now.next_week, point_category: "ログインボーナス")
         end
         rescue => e
            puts e

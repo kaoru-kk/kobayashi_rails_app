@@ -14,12 +14,12 @@ job_type :rbenv_rake, %Q!PATH="#{DIR_RBENV_BIN}:$PATH"; eval "$(rbenv init -)"; 
 job_type :rake,    "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
 #正常に動くか調査のため毎日回してます
-# every 1.days, at:"0:00 am" do
-#   rake "comic_board:new_task"
-# end
-every :thursday, :at => '9:55am' do
+every 1.days do
   rake "comic_board:new_task"
 end
+# every :thursday, :at => '9:55am' do
+#   rake "comic_board:new_task"
+# end
 
 
 

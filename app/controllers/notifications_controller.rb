@@ -5,6 +5,8 @@ class NotificationsController < ApplicationController
 
   def update
     notification = Notification.find(params[:id])
+
+    #transactionしたほうがいい？検討
     notification.update(checked: true)
     point = Point.find(notification.point_id)
     PointsHelper.increase_point(current_user, point.point )

@@ -12,4 +12,9 @@ module PointsHelper
         result = user.point_count - (point).to_i
         user.update!(point_count: result)
     end
+
+    def find_point(id)
+        @point = Point.find(id)
+        return @point.point
+    end
 end
