@@ -33,7 +33,7 @@
                   <%= link_to notifications_path, style:"padding-top:15px; padding-bottom:15px; margin-right:10px; color:white; font-size:20px;" do  %>  
                     通知
                     <% if NotificationsHelper.notification_check?(current_user) %>
-                      <span style="color:red; font-weight:bold">新着通知あり</span>
+                      <span style="color:red; font-weight:bold">通知あり</span>
                     <% end %>
                    <% end %>
                 </li>

@@ -15,8 +15,16 @@
                         <span>
                             <%= n.visitor.name %>さんがあなたをフォローしました
                         </span>
+                    <% when "ポイント" then %>
+                        <span>
+                            ポイントが付与されました！
+                            <% if n.checked == false %>
+                                <%= link_to "ポイントを受け取る", notification_path(n.id), method: :patch %>
+                            <% end %>
+                        </span>
                 <% end %>
                 <%= time_ago_in_words(n.created_at).upcase %>
+
                 <hr>
             </div>
         <% end %>
