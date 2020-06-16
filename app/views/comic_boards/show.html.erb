@@ -53,9 +53,9 @@
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <%= form_tag(favorite_create_path(comment.id), method: :post) do %>
-                                                ポイントを他のユーザにあげる事ができます！いいねと思った分だけあげちゃいましょう！<br>
+                                                ポイントを他のユーザにあげる事ができます！あげない場合は0を選んでください<br>
                                                 <%= select_tag 'point', options_for_select((0..current_user.point_count).to_a)  %>
-                                                <%= submit_tag "いいね送信" %>
+                                                <%= submit_tag "いいねする" %>
                                             <% end %>
                                         </div>
                                     </div>

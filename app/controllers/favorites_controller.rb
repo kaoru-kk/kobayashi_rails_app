@@ -8,8 +8,8 @@ class FavoritesController < ApplicationController
             notification = Notification.new
             notification.create_notification_like!(current_user, favorite)
             #ポイント上限
-            PointMethod.increase_point(favorite.comment.user, params[:point])
-            PointMethod.decrease_point(current_user, params[:point])
+            PointsHelper.increase_point(favorite.comment.user, params[:point])
+            PointsHelper.decrease_point(current_user, params[:point])
             redirect_to comic_board_path(favorite.comment.comic_board_id)
         end
         rescue => e
