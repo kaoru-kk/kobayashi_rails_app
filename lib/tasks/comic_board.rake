@@ -4,7 +4,7 @@ namespace :comic_board do
 
         #実行する処理が祝日の場合中断する
         if ComicBoardsHelper.today_is_holiday? != nil
-            return false
+            exit!
         end
 
         ActiveRecord::Base.transaction do
