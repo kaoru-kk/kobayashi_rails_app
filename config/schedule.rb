@@ -13,13 +13,16 @@ DIR_RBENV_BIN = "#{ENV['HOME']}/.rbenv/bin"
 job_type :rbenv_rake, %Q!PATH="#{DIR_RBENV_BIN}:$PATH"; eval "$(rbenv init -)"; cd :path && :bundle_command rake :task --silent :output!
 job_type :rake,    "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
-#正常に動くか調査のため毎日回してます
-every 1.days do
+every :monday, :at => "00:00am" do
   rake "comic_board:new_task"
 end
-# every :thursday, :at => '9:55am' do
-#   rake "comic_board:new_task"
-# end
 
+#月が祝日の週の土曜日に定時処理を設定
+dates = ComicBoardsHelper.saturday_release_dates
+dates.each do |d|
+  every "0 0 #{d.day} #{d.month} 6" do
+    rake "comic_board:new_task"
+  end
+end
 
-
+#bundle exec whenever --clear-crontab && bundle exec whenever --update-crontab
