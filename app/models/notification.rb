@@ -5,7 +5,6 @@ class Notification < ApplicationRecord
     belongs_to :comment, optional: true
     belongs_to :visitor, class_name: 'User', foreign_key: 'visitor_id', optional: true
     belongs_to :visited, class_name: 'User', foreign_key: 'visited_id', optional: true
-    #belongs_to :point, class_name: "PointReciever", foreign_key: "point_id" 
     ACTION_VALUES = ["いいね", "コメント", "フォロー", "ポイント"]
     validates :action,  presence: true, inclusion: {in:ACTION_VALUES}
 
@@ -28,16 +27,14 @@ class Notification < ApplicationRecord
     end
 
     def save_notification_comment!(current_user, comment)
+        return false if current_user.id == comment.parent.user_id
+        
         notification = current_user.active_notifications.new(
             comic_board_id: comment.comic_board_id,
             comment_id: comment.id,
             visited_id: comment.parent.user_id,
             action: 'コメント'
         )
-        # 自分の投稿に対するコメントの場合は、通知済みとする
-        if notification.visitor_id == notification.visited_id
-          notification.checked = true
-        end
         notification.save! if notification.valid?
     end
 

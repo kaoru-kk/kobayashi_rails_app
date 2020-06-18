@@ -24,6 +24,7 @@ namespace :comic_board do
             ComicBoard.import comics_array
             puts "最新のスレッド作成完了！"
 
+            #ログインボーナスを作成
             Point.create(title: "ログイン ボーナス", detail: "これはログインボーナスだよん", point: 100, start_date: Time.now , end_date: Time.now.next_week, point_category: "ログインボーナス")
             puts "最新のログインボーナス作成完了！"
             

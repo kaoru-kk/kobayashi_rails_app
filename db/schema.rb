@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_092920) do
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "visitor_id", null: false
+    t.integer "visitor_id"
     t.integer "visited_id", null: false
     t.integer "comic_board_id"
     t.integer "comment_id"
