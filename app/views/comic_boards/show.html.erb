@@ -67,21 +67,21 @@
                         <% comment.replies.each do |reply| %>
                             <p class="ml-4"><%= reply.user.try(:name) || "退会済みユーザー" %>さん：  <%= reply.comment_text%></p>
                         <% end %>
-                        
-                        <span class='fold_switch' style='font-size:.9em; text-decoration:underline; cursor:pointer;'>▲返信する▲</span><br>
-                        <div style='display:none;'>
-                            <%= form_with(model: @reply, local: true, url: comic_board_comment_reply_path(comment.comic_board_id, comment.id) ) do |form| %>
-                                <div class="form-group">
-                                    <%= form.text_area :comment_text, class: "form-control", style: "width:199px;" %>
-                                </div>
 
-                                <% if user_signed_in? %>
+                        <% if user_signed_in? %>
+                            <span class='fold_switch' style='font-size:.9em; text-decoration:underline; cursor:pointer;'>▲返信する▲</span><br>
+                            <div style='display:none;'>
+                                <%= form_with(model: @reply, local: true, url: comic_board_comment_reply_path(comment.comic_board_id, comment.id) ) do |form| %>
+                                    <div class="form-group">
+                                        <%= form.text_area :comment_text, class: "form-control", style: "width:199px;" %>
+                                    </div>
                                     <%= form.submit "返信する", class: "btn btn-primary" %>
-                                <% else %>
-                                    ログインしたらコメントできます
                                 <% end %>
-                            <% end %>
-                        </div>
+                            </div>
+                        <% else %>
+                            <b>ログインしたらコメントできます</b>
+                        <% end %>
+
                     </div>
                 </div>
 
