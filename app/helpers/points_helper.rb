@@ -4,15 +4,13 @@ module PointsHelper
     #ポイントをもらった側
     def increase_point(user, point)
         user.lock!
-        result = user.point_count + (point).to_i
-        user.update!(point_count: result)
+        user.increment!(:point_count, (point).to_i)
     end
 
     #ポイントをあげた側
     def decrease_point(user, point)
         user.lock!
-        result = user.point_count - (point).to_i
-        user.update!(point_count: result)
+        user.decrement!(:point_count, (point).to_i)
     end
 
     def increment_point(user, point)

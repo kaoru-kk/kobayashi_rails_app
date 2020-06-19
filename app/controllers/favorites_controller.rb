@@ -7,18 +7,14 @@ class FavoritesController < ApplicationController
             #通知作成
             notification = Notification.new
             notification.create_notification_like!(current_user, favorite)
-            #ポイント上限
+            #ポイント増減
             PointsHelper.increase_point(favorite.comment.user, params[:point])
             PointsHelper.decrease_point(current_user, params[:point])
-
-            # puts "======in・decremeent======"
-            # PointsHelper.increment_point(favorite.comment.user, params[:point])
-            # PointsHelper.decrement_point(current_user, params[:point])
-            # puts "======in・decremeent======"
-            redirect_to comic_board_path(favorite.comment.comic_board_id)
+            redirect_to comic_board_path(params[:comic_board_id])
         end
         rescue => e
             puts e
+            redirect_to comic_board_path(params[:comic_board_id])
     end
 
     def destroy

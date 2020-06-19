@@ -55,6 +55,7 @@
                                             <%= form_tag(favorite_create_path(comment.id), method: :post) do %>
                                                 ポイントを他のユーザにあげる事ができます！あげない場合は0を選んでください<br>
                                                 <%= select_tag 'point', options_for_select((0..current_user.point_count).to_a)  %>
+                                                <%= hidden_field_tag :comic_board_id, @comic_board.id %>
                                                 <%= submit_tag "いいねする" %>
                                             <% end %>
                                         </div>
