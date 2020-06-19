@@ -26,6 +26,7 @@ module PointsHelper
         return "#{point.title}：#{point.point}"
     end
 
+    
     #PointsHelper.thread_test
     #PointsHelper.cry_check_times
     #悲観動作チェック
