@@ -9,4 +9,5 @@ class Point < ApplicationRecord
 
     ACTION_VALUES = ["ログインボーナス", "シーズンイベント", "その他"]
     validates :point_category,  presence: true, inclusion: {in:ACTION_VALUES}
+
 end
