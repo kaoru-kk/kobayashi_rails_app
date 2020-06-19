@@ -13,7 +13,6 @@ module PointsHelper
         user.lock!
         result = user.point_count - (point).to_i
         user.update!(point_count: result)
-        puts user.point_count
     end
 
     def increment_point(user, point)
