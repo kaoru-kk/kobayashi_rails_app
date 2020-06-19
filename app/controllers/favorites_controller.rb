@@ -10,6 +10,11 @@ class FavoritesController < ApplicationController
             #ポイント上限
             PointsHelper.increase_point(favorite.comment.user, params[:point])
             PointsHelper.decrease_point(current_user, params[:point])
+
+            # puts "======in・decremeent======"
+            # PointsHelper.increment_point(favorite.comment.user, params[:point])
+            # PointsHelper.decrement_point(current_user, params[:point])
+            # puts "======in・decremeent======"
             redirect_to comic_board_path(favorite.comment.comic_board_id)
         end
         rescue => e

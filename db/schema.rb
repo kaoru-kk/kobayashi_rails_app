@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_092920) do
+ActiveRecord::Schema.define(version: 2020_06_18_032611) do
 
   create_table "comic_boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "comic_id"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_092920) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name", default: "", null: false
-    t.integer "point_count", default: 0
+    t.bigint "point_count", default: 0, unsigned: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
